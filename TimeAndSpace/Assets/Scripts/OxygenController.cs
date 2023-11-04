@@ -32,7 +32,6 @@ public class OxygenController : MonoBehaviour
             _currentOxygen -= _oxygenFallRate * Time.fixedDeltaTime;
             var currentOxygen = _currentOxygen / _maxOxygen;
             UIManager.instance.DisplayOxygen(currentOxygen);
-            Debug.Log(_currentOxygen);
         }
     }
 
