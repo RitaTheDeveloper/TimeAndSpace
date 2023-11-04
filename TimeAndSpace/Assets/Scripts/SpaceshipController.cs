@@ -4,17 +4,14 @@ public class SpaceshipController : MonoBehaviour
 {
     [SerializeField] private float _startSpeed;
     [SerializeField] private float _accleration;
-    [SerializeField] private float _maxOxygen = 100f; 
-    
     [SerializeField] Gravity _gravityScript;
 
-    private float _currentOxygen;
     private Rigidbody _rigidbody;
 
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        Init();
         Move();
     }
 
@@ -26,10 +23,17 @@ public class SpaceshipController : MonoBehaviour
         }
     }
 
+    
+
     private void FixedUpdate()
     {
         _gravityScript.CalculationOfPlanetaryGravityOnTheShip();
     }    
+
+    private void Init()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
 
     private void Move()
     {
@@ -44,7 +48,6 @@ public class SpaceshipController : MonoBehaviour
     public void Death()
     {
         Destroy(gameObject, 0.4f);
-    }
-
+    }   
 }
 
