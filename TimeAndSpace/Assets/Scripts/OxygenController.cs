@@ -20,8 +20,6 @@ public class OxygenController : MonoBehaviour
     }
     private void DescreaceInOxygenInFrame()
     {
-
-
         if (_currentOxygen <= 0f)
         {
             GameManager.instance.GameOver();
@@ -35,4 +33,13 @@ public class OxygenController : MonoBehaviour
         }
     }
 
+    public void AddOxygen(float amountOfOxygen)
+    {
+        _currentOxygen += amountOfOxygen;
+
+        if (_currentOxygen > _maxOxygen)
+        {
+            _currentOxygen = _maxOxygen;
+        }
+    }
 }
