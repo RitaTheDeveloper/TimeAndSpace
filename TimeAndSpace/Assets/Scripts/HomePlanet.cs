@@ -9,6 +9,7 @@ public class HomePlanet : MonoBehaviour
         if (collision.gameObject.tag == "Spaceship")
         {
             GameManager.instance.Win();
+            Destroy(collision.gameObject);
         }
     }
 }
