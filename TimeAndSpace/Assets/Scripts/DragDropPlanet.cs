@@ -7,6 +7,20 @@ public class DragDropPlanet : MonoBehaviour
 
     private Vector3 mousePosition;
     private float mass;
+    private Vector3 startPosition;
+
+    private List<GameObject> pointedObject()
+    {
+        List<GameObject> gameObjectList = new List<GameObject>();
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit[] allHits;
+        allHits = Physics.RaycastAll(ray);
+        for (int i = 0; i < allHits.Length; i++)
+        {
+            gameObjectList.Add(allHits[i].transform.gameObject);
+        }
+        return gameObjectList;
+    }
 
     private Vector3 getMousePosition()
     {
@@ -17,6 +31,7 @@ public class DragDropPlanet : MonoBehaviour
     void Start()
     {
         mass = GetComponent<Rigidbody>().mass;
+        startPosition = transform.position;
     }
 
 
@@ -31,6 +46,13 @@ public class DragDropPlanet : MonoBehaviour
     private void OnMouseUp()
     {
         GetComponent<Rigidbody>().mass = mass;
+        foreach (var obj in pointedObject())
+        {
+            if (obj.name != "Plane" && obj.name != gameObject.name)
+            {
+                transform.position = startPosition;
+            }
+        }
     }
     
     
