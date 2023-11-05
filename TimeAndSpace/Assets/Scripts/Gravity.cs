@@ -21,6 +21,11 @@ public class Gravity : MonoBehaviour
 
     }
 
+    public void SetArrayOfPlanets(GameObject[] planets)
+    {
+        _planets = planets;
+    }
+
     public void CalculationOfPlanetaryGravityOnTheShip()
     {
         for (int i = 0; i < _planets.Length; ++i)

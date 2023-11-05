@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragDropPlanet : MonoBehaviour
+public class DragDropPlanet2 : MonoBehaviour
 {
 
     private Vector3 mousePosition;

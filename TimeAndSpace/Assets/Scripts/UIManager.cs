@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _gameMenu;
+    [SerializeField] private GameObject _goBtn;
 
     [SerializeField] private GameObject _oxygenBar;
 
@@ -24,6 +25,19 @@ public class UIManager : MonoBehaviour
 
     private void AllOff()
     {
+        _mainMenu.SetActive(false);
+        _gameMenu.SetActive(false);
+    }
 
+    public void OnClickStartNewGame()
+    {
+        AllOff();
+        _gameMenu.SetActive(true);
+    }
+
+    public void OnClickGo()
+    {
+        GameManager.instance.StartLevel();
+        _goBtn.SetActive(false);
     }
 }

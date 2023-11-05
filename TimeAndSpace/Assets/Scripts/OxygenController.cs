@@ -16,9 +16,9 @@ public class OxygenController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        DescreaceInOxygenInFrame();
+        //DescreaceInOxygenInFrame();
     }
-    private void DescreaceInOxygenInFrame()
+    public void DescreaceInOxygenInFrame()
     {
         if (_currentOxygen <= 0f)
         {
