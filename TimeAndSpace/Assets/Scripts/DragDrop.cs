@@ -9,7 +9,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     private Vector3 startPosition;
     private bool isDragging = false;
 
-    [SerializeField] private GameObject planetPrefab;
+    private GameObject planetPrefab;
 
     void Start()
     {
@@ -18,6 +18,11 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (eventData.pointerEnter.gameObject.GetComponent<ItemData>().planetPrefab != null)
+        {
+            planetPrefab = eventData.pointerEnter.gameObject.GetComponent<ItemData>().planetPrefab;
+        }
+        Debug.Log(eventData.pointerEnter.gameObject.name);
         isDragging = true;
         transform.position = Input.mousePosition + offset;
     }
@@ -29,11 +34,9 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     public void OnPointerUp(PointerEventData eventData)
     {
-
+    
             isDragging = false;
-
             transform.position = startPosition;
-            // Отсоединяем от Canvas
             RaycastHit hit = new RaycastHit();
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, 1000))
@@ -41,6 +44,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                 GameObject newPlanet = Instantiate(planetPrefab, hit.point, Quaternion.identity);
                 Debug.Log("hop");
             }
+        Destroy(eventData.pointerEnter);
                           
     }
 }
